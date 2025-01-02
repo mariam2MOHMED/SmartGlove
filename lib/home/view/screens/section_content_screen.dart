@@ -151,6 +151,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduationproject/app_theme.dart';
 import 'package:graduationproject/home/view/widget/section_content_item.dart';
+import 'package:graduationproject/home/view/widget/show_dialog_content.dart';
 import 'package:graduationproject/utils/provider/section_content_provider.dart';
 import 'package:graduationproject/utils/widgets/loaing_indictor.dart';
 import 'package:provider/provider.dart';
@@ -167,7 +168,7 @@ class SectionContentScreen extends StatefulWidget {
 
 class _SectionContentScreenState extends State<SectionContentScreen> {
   bool isLoading = true;
-  late SectionModel sectionModel; // Selected section
+   SectionModel? sectionModel; // Selected section
   @override
   void initState() {
     super.initState();
@@ -176,27 +177,32 @@ class _SectionContentScreenState extends State<SectionContentScreen> {
       ModalRoute.of(context)!.settings.arguments as SectionModel;
       sectionModel = args;
       _loadData();
+
     });
+setState(() {
+
+});
   }
 
   void _loadData() async {
     await Provider.of<SectionContentProvider>(context, listen: false)
-        .getSectionContentBySectionId(sectionModel); //
+        .getSectionContentBySectionId(sectionModel!); //
     // Fetch content by section ID
 
     setState(() {
       isLoading = false;
     });
   }
-
+var sentence=TextEditingController();
   @override
   Widget build(BuildContext context) {
     SectionContentProvider sectionContentProvider =
-    Provider.of<SectionContentProvider>(context);
+    Provider.of<SectionContentProvider>(context,listen: false);
 
     return Scaffold(
+
       appBar: AppBar(
-        title: Text("sectionModel.text"), // Title of the section
+        title: Text(sectionModel!.text??""), // Title of the section
         backgroundColor: AppTheme.primary,
       ),
       body: isLoading
@@ -213,6 +219,18 @@ class _SectionContentScreenState extends State<SectionContentScreen> {
         },
         separatorBuilder: (context, index) => SizedBox(height: 12.0),
         itemCount: sectionContentProvider.sectionContents.length,
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppTheme.primary,
+        onPressed: (){
+          showDialog(context: context,
+              builder: (context)=>ShowDialogContent(
+                  sentenceController:sentence ));
+        },
+        shape: CircleBorder(
+
+        ),
+        child: Icon(Icons.add,color: AppTheme.white,),
       ),
     );
   }

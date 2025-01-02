@@ -26,9 +26,9 @@ class SectionContentProvider with   ChangeNotifier{
         sectionContents.add(sec);
       }
     }
-
-    print("Final SectionContents List: ${sectionContents.length} items");
+   print("Final SectionContents List: ${sectionContents.length} items");
     notifyListeners();
+
   }
   Future<void>addContentSection(
       String userId, SectionModel sectionModel,
@@ -43,14 +43,12 @@ class SectionContentProvider with   ChangeNotifier{
   }
 
 
-  List<SectionContentModel> _sectionContents = [];
-
-
-
-  Future<void> getSectionContentBySectionId(SectionModel sectionModel) async {
+  List<SectionContentModel> section = [];
+  Future<void> getSectionContentBySectionId(SectionModel sectionModel)
+  async {
     // Simulate fetching data from an API or database
     await Future.delayed(Duration(seconds: 2)); // Simulate network delay
-    _sectionContents = sectionContents
+    section = sectionContents
         .where((content) => content.id == sectionModel.id)
         .toList(); // Filter data by sectionId
     notifyListeners();
