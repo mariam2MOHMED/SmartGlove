@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:graduationproject/app_theme.dart';
+import 'package:graduationproject/home/models/section_model.dart';
 
 import '../../models/section_content_model.dart';
 
@@ -20,7 +21,7 @@ decoration: BoxDecoration(
         padding: const EdgeInsets.symmetric(
           vertical: 12.0
         ),
-        child: Text(sectionContentModel.txt,
+        child: Text(sectionContentModel.title,
           textAlign: TextAlign.center,
           style:
         TextStyle(

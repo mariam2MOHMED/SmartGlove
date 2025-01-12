@@ -16,8 +16,11 @@ class SectionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-Navigator.of(context).pushNamed(
-    SectionContentScreen.routeName,arguments: sectionModel);
+        Navigator.pushNamed(
+          context,
+          SectionContentScreen.routeName,
+          arguments: sectionModel, // Ensure this is not null
+        );
       },
       child: Container(
         decoration:
@@ -35,7 +38,7 @@ Navigator.of(context).pushNamed(
               vertical: 8.0,
               horizontal: 10.0),
           child: Center(
-            child: Text(sectionModel.text,
+            child: Text(sectionModel.name,
             style: TextStyle(
               color: AppTheme.white,
              fontSize: 24.0,

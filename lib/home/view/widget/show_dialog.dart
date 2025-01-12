@@ -51,7 +51,7 @@ class ShowDialog extends StatelessWidget {
                       Navigator.pop(context); // Close the dialog
                       Fluttertoast.showToast(
                         msg: "Section added successfully",
-                        backgroundColor: AppTheme.secondary,
+                        backgroundColor: AppTheme.grey,
                         fontSize: 18.0,
                         gravity: ToastGravity.BOTTOM,
                         toastLength: Toast.LENGTH_LONG,

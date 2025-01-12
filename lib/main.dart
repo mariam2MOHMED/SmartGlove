@@ -7,6 +7,7 @@ import 'package:graduationproject/auth/view/screens/register_screen.dart';
 import 'package:graduationproject/auth/view/screens/welcome_screen.dart';
 import 'package:graduationproject/utils/provider/section_content_provider.dart';
 import 'package:graduationproject/utils/provider/section_provider.dart';
+import 'package:graduationproject/utils/provider/setting_provider.dart';
 import 'package:graduationproject/utils/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -26,6 +27,9 @@ void main()async {
    ChangeNotifierProvider(create:
   (BuildContext context) =>SectionProvider()),
         ChangeNotifierProvider(create: (_) => SectionContentProvider()),
+        ChangeNotifierProvider(create:
+            (BuildContext context) =>SettingProvider()..
+            getTheme()),
     ],
     child: GradProject()));
 }
@@ -34,9 +38,11 @@ class GradProject extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingProvider settingProvider=Provider.of<SettingProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-     themeMode: ThemeMode.light,
+     themeMode: settingProvider.themeMode,
+     darkTheme: AppTheme.darkTheme,
      theme: AppTheme.lightTheme,
      routes: {
         WelcomeScreen.routeName:(_)=>WelcomeScreen(),

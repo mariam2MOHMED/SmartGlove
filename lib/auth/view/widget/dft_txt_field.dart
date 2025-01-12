@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduationproject/app_theme.dart';
+import 'package:graduationproject/utils/provider/setting_provider.dart';
+import 'package:provider/provider.dart';
 
 class dftTxtField extends StatefulWidget {
   String hinttxt;
@@ -25,29 +27,42 @@ class _dftTxtFieldState extends State<dftTxtField> {
 
   @override
   Widget build(BuildContext context) {
+    SettingProvider settingProvider=Provider.of<SettingProvider>(context);
     return TextFormField(
       obscureText: isObsecure,
       validator:widget.validator,
-
+style: settingProvider.themeMode==ThemeMode.dark?TextStyle(
+  color: Colors.white,
+  fontSize: 15.0
+):TextStyle(
+    color: Colors.black,
+    fontSize: 15.0
+),
       controller: widget.controller,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
+
         prefixIcon:Icon(widget.prefixIcon??null,
-          color: AppTheme.primary,),
+          color:settingProvider.themeMode==ThemeMode.dark?
+          AppTheme.white:
+          AppTheme.primary,),
         hintText: widget.hinttxt,
+
 suffixIcon: widget.isPassword==true?IconButton(onPressed:
 (){
   isObsecure= !isObsecure;
   setState(() {});
 }, icon: Icon(isObsecure==true?Icons.visibility:
-Icons.visibility_off,color: AppTheme.secondary,)):null,
+Icons.visibility_off,color: AppTheme.grey,)):null,
         hintStyle: TextStyle(
-          color: Colors.black,
-          fontSize: 14.0
+          color: settingProvider.themeMode==ThemeMode.dark?AppTheme.white:Colors.black,
+          fontSize: 16.0
         ),
-        border:OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-
+        border:UnderlineInputBorder(
+       borderSide: BorderSide(
+         color:settingProvider.themeMode==ThemeMode.dark?
+         Color(0xffE5E5E5):  Color(0xff64748B)
+       )
         )
       ),
     );

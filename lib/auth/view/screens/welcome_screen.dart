@@ -4,6 +4,9 @@ import 'package:graduationproject/app_theme.dart';
 import 'package:graduationproject/auth/view/screens/login_screen.dart';
 import 'package:graduationproject/auth/view/screens/register_screen.dart';
 import 'package:graduationproject/auth/view/widget/dft_btn.dart';
+import 'package:provider/provider.dart';
+
+import '../../../utils/provider/setting_provider.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static String routeName="/WelcomeScreen";
@@ -11,8 +14,9 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingProvider settingProvider=Provider.of<SettingProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -25,7 +29,10 @@ class WelcomeScreen extends StatelessWidget {
               CircleAvatar(
                 radius: 115.0,
                 backgroundImage:
-                        AssetImage('assets/images/logo.png',
+                        AssetImage(settingProvider.themeMode==ThemeMode.dark?
+
+                        "assets/images/logo_dark.jpg":
+                        "assets/images/logo_light.jpg",
                 ),
 
               ),
@@ -38,19 +45,26 @@ class WelcomeScreen extends StatelessWidget {
               Navigator.of(context).pushNamed(
                   RegisterScreen.routeName);
               },
-              txt: "Sign Up", txtColor: Colors.white,
-              borderColor: AppTheme.primary, bg:  AppTheme.primary),
+              txt: "Sign Up", txtColor:settingProvider.themeMode==ThemeMode.dark?
+          Colors.white:Colors.white,
+              borderColor:settingProvider.themeMode==ThemeMode.dark?
+              AppTheme.darksecondary:AppTheme.primary,
+              bg: settingProvider.themeMode==ThemeMode.dark?
+              AppTheme.darksecondary:AppTheme.primary),
               ),
               SizedBox(width: 20.0,),
               Expanded(
           child: DftButton(txt: "Sign In",
-              txtColor: AppTheme.primary,
+              txtColor: settingProvider.themeMode==ThemeMode.dark?
+              AppTheme.white:AppTheme.primary,
               onPress: (){
                 Navigator.of(context).pushNamed(
                     LoginScreen.routeName);
               },
-              borderColor:AppTheme.primary,
-              bg:  Colors.white ),
+              borderColor:settingProvider.themeMode==ThemeMode.dark?
+              AppTheme.darksecondary:AppTheme.primary,
+              bg:settingProvider.themeMode==ThemeMode.dark?
+              AppTheme.darkprimary:Colors.white),
               ),
 
             ],

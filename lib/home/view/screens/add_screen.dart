@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduationproject/app_theme.dart';
 import 'package:graduationproject/auth/view/widget/dft_btn.dart';
+import 'package:graduationproject/home/view/screens/section_screen_list.dart';
 
 import '../widget/show_dialog.dart';
 
@@ -15,7 +16,8 @@ class _AddScreenState extends State<AddScreen> {
   var sectionController=TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return
+      Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Center(
         child: Column(
@@ -29,7 +31,7 @@ class _AddScreenState extends State<AddScreen> {
           bg: AppTheme.primary),
             SizedBox(height:24.0 ,),
             DftButton(txt: "Add a Sentence",
-                onPress: addSection,
+                onPress: navigateTo,
                 txtColor: Colors.white,
                 borderColor: AppTheme.primary,
                 bg: AppTheme.primary),
@@ -44,5 +46,10 @@ class _AddScreenState extends State<AddScreen> {
             ShowDialog(
               sentenceController: sectionController,
     ));
+  }
+  navigateTo(){
+Navigator.push(context, MaterialPageRoute(builder: (context)=>
+    SectionsScreenList()
+));
   }
 }
