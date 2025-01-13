@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduationproject/app_theme.dart';
+import 'package:graduationproject/utils/provider/setting_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/section_model.dart';
 import '../screens/section_content_screen.dart';
@@ -14,6 +16,7 @@ class SectionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingProvider settingProvider=Provider.of<SettingProvider>(context);
     return InkWell(
       onTap: (){
         Navigator.pushNamed(
@@ -25,7 +28,7 @@ class SectionItem extends StatelessWidget {
       child: Container(
         decoration:
         BoxDecoration(
-          color: AppTheme.thirdcolor,
+          color:settingProvider.themeMode==ThemeMode.dark? AppTheme.darksecondary:AppTheme.thirdcolor,
           borderRadius: BorderRadius.only(
            topRight: Radius.circular(20),
             topLeft: Radius.circular(20),

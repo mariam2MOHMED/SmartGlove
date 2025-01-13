@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:graduationproject/app_theme.dart';
 import 'package:graduationproject/auth/view/widget/dft_btn.dart';
 import 'package:graduationproject/home/view/screens/section_screen_list.dart';
+import 'package:graduationproject/utils/provider/setting_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../widget/show_dialog.dart';
 
@@ -16,6 +18,7 @@ class _AddScreenState extends State<AddScreen> {
   var sectionController=TextEditingController();
   @override
   Widget build(BuildContext context) {
+    SettingProvider settingProvider=Provider.of<SettingProvider>(context);
     return
       Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -27,14 +30,16 @@ class _AddScreenState extends State<AddScreen> {
           DftButton(txt: "Add a Section",
               onPress: addSection,
           txtColor: Colors.white,
-          borderColor: AppTheme.primary,
-          bg: AppTheme.primary),
+          borderColor:settingProvider.themeMode==ThemeMode.dark?
+          AppTheme.darksecondary:AppTheme.thirdcolor,
+          bg: settingProvider.themeMode==ThemeMode.dark?
+          AppTheme.darksecondary:AppTheme.thirdcolor,),
             SizedBox(height:24.0 ,),
-            DftButton(txt: "Add a Sentence",
+            DftButton(txt: "Go to Sections",
                 onPress: navigateTo,
                 txtColor: Colors.white,
-                borderColor: AppTheme.primary,
-                bg: AppTheme.primary),
+                borderColor: settingProvider.themeMode==ThemeMode.dark? AppTheme.darksecondary:AppTheme.thirdcolor,
+                bg: settingProvider.themeMode==ThemeMode.dark? AppTheme.darksecondary:AppTheme.thirdcolor,),
           ],
         ),
       ),

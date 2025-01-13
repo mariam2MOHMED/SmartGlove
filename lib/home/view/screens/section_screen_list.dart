@@ -7,6 +7,7 @@ import 'package:graduationproject/home/view/screens/section_content_screen.dart'
 import 'package:graduationproject/home/view/widget/section_item.dart';
 import 'package:graduationproject/utils/firebase_functions.dart';
 import 'package:graduationproject/utils/provider/section_provider.dart';
+import 'package:graduationproject/utils/provider/setting_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/provider/user_provider.dart';
@@ -38,7 +39,7 @@ class _SectionsScreenListState extends State<SectionsScreenList> {
   @override
   Widget build(BuildContext context) {
     final sectionProvider = Provider.of<SectionProvider>(context);
-
+    SettingProvider settingProvider=Provider.of<SettingProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Sections"),
@@ -65,8 +66,11 @@ class _SectionsScreenListState extends State<SectionsScreenList> {
                         Fluttertoast.showToast(
                           msg: "Section deleted successfully",
                           timeInSecForIosWeb: 5,
-                          textColor: AppTheme.white,
-                          backgroundColor: Colors.green,
+                          textColor:
+                          AppTheme.white,
+                          backgroundColor:
+                          settingProvider.themeMode==ThemeMode.dark?
+                          AppTheme.darksecondary:AppTheme.primary,
                         ).catchError((error) {
                           print("The error is $error");
                         });
@@ -107,6 +111,8 @@ class SecItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingProvider settingProvider=Provider.of<SettingProvider>(context);
+
     return InkWell(
       onTap: () {
         Navigator.pushNamed(
@@ -118,7 +124,8 @@ class SecItem extends StatelessWidget {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: AppTheme.primary,
+          color: settingProvider.themeMode==ThemeMode.dark?
+          AppTheme.darksecondary:AppTheme.thirdcolor,
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Center(
@@ -126,7 +133,7 @@ class SecItem extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: Text(
               sectionModel.name,
-              style: Theme.of(context).textTheme.headlineLarge,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
         ),

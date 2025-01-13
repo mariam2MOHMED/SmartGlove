@@ -153,15 +153,25 @@ class _LoginScreenState extends State<LoginScreen> {
         Provider.of<UserProvider>(context,listen: false).
         getUser(user);
         Fluttertoast.showToast(msg: "${user.name} logined sucessfuly",
-            backgroundColor: AppTheme.grey,
+            backgroundColor:
+            Provider.of<SettingProvider>(context,listen: false).themeMode==ThemeMode.dark?
+            AppTheme.darksecondary:AppTheme.primary,
+            fontSize: 18.0,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 5,
+            toastLength: Toast.LENGTH_LONG,
+            textColor: AppTheme.white
+        );
+        Navigator.of(context).pushNamed(HomePage.routeName);
+      }).catchError((e){
+        Fluttertoast.showToast(msg: "something went wrong!",
+            backgroundColor: Colors.red,
             fontSize: 18.0,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 5,
             toastLength: Toast.LENGTH_LONG,
             textColor: AppTheme.primary
         );
-        Navigator.of(context).pushNamed(HomePage.routeName);
-      }).catchError((e){
         print("the error is $e");
       });
     }

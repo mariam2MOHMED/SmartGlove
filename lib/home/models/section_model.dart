@@ -39,21 +39,43 @@
 // }
 import 'package:flutter/material.dart';
 // SectionModel Class
+// class SectionModel {
+//    String id;
+//    String name;
+//
+//
+//   SectionModel({
+//     this.id=""
+//     ,required this.name});
+//   SectionModel.fromJson(Map<String,dynamic>json):this(
+//       name: json["text"],
+//     id: json["id"]
+//   );
+//   Map<String,dynamic>toJson()=>{
+//     "text":name,
+//     "id":id
+//   };
+// }
 class SectionModel {
-   String id;
-   String name;
-
+  String id;
+  String name;
+  List<SectionContentModel>? staticContents; // Add this field for static items
 
   SectionModel({
-    this.id=""
-    ,required this.name});
-  SectionModel.fromJson(Map<String,dynamic>json):this(
-      name: json["text"],
-    id: json["id"]
+    this.id = "",
+    required this.name,
+    this.staticContents, // Initialize static items
+  });
+
+  SectionModel.fromJson(Map<String, dynamic> json)
+      : this(
+    name: json["text"],
+    id: json["id"],
   );
-  Map<String,dynamic>toJson()=>{
-    "text":name,
-    "id":id
+
+  Map<String, dynamic> toJson() => {
+    "text": name,
+    "id": id,
   };
 }
 

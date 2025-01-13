@@ -28,7 +28,8 @@ class _dftTxtFieldState extends State<dftTxtField> {
   @override
   Widget build(BuildContext context) {
     SettingProvider settingProvider=Provider.of<SettingProvider>(context);
-    return TextFormField(
+    return
+      TextFormField(
       obscureText: isObsecure,
       validator:widget.validator,
 style: settingProvider.themeMode==ThemeMode.dark?TextStyle(

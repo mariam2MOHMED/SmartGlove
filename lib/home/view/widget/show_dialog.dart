@@ -7,6 +7,8 @@ import 'package:graduationproject/utils/provider/section_provider.dart';
 import 'package:graduationproject/utils/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../../../utils/provider/setting_provider.dart';
+
 class ShowDialog extends StatelessWidget {
   final TextEditingController sentenceController;
 
@@ -14,16 +16,30 @@ class ShowDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingProvider settingProvider=Provider.of<SettingProvider>(context);
     return AlertDialog(
-      title: Center(child: Text("Add A Section", style: TextStyle(fontSize: 18))),
+      backgroundColor: AppTheme.white,
+      title: Center(child:
+      Text("Add A Section", style: TextStyle(fontSize: 18,
+      color: settingProvider.themeMode==ThemeMode.dark?AppTheme.darksecondary:AppTheme.primary
+      ))),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             controller: sentenceController,
+            style: TextStyle(
+                color: settingProvider.themeMode==ThemeMode.dark?
+                AppTheme.black:AppTheme.black
+            ),
             textAlign: TextAlign.center,
             decoration: InputDecoration(
               hintText: "Write A Section",
+              hintStyle: TextStyle(
+                color:
+                settingProvider.themeMode==ThemeMode.dark?AppTheme.darksecondary:AppTheme.primary,
+                fontSize: 14.0
+              ),
               border: UnderlineInputBorder(),
             ),
           ),
@@ -35,7 +51,11 @@ class ShowDialog extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("Close", style: TextStyle(color: AppTheme.primary)),
+                child: Text("Close", style:
+                TextStyle(
+                  color:
+                  settingProvider.themeMode==ThemeMode.dark?AppTheme.darksecondary:AppTheme.primary,
+                )),
               ),
               TextButton(
                 onPressed: () {
@@ -51,17 +71,18 @@ class ShowDialog extends StatelessWidget {
                       Navigator.pop(context); // Close the dialog
                       Fluttertoast.showToast(
                         msg: "Section added successfully",
-                        backgroundColor: AppTheme.grey,
+                        backgroundColor: AppTheme.primary,
                         fontSize: 18.0,
                         gravity: ToastGravity.BOTTOM,
                         toastLength: Toast.LENGTH_LONG,
-                        textColor: AppTheme.primary,
+                        textColor: Colors.white,
                       );
                     });
                   }
                 },
                 child: Text("Add",
-                    style: TextStyle(color: AppTheme.primary)),
+                    style: TextStyle( color:
+                    settingProvider.themeMode==ThemeMode.dark?AppTheme.darksecondary:AppTheme.primary,)),
               ),
 
             ],

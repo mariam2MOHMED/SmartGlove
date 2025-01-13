@@ -169,12 +169,14 @@ FirebaseUtils.register(email: emailController.text,
     password: passwordController.text).then((user) {
   Provider.of<UserProvider>(context,listen: false).getUser(user);
   Fluttertoast.showToast(msg: "${user.name}  registered sucessfuly",
-      backgroundColor: AppTheme.grey,
+      backgroundColor:
+      Provider.of<SettingProvider>(context,listen: false).themeMode==ThemeMode.dark?
+      AppTheme.darksecondary:AppTheme.primary,
       fontSize: 18.0,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 5,
       toastLength: Toast.LENGTH_LONG,
-      textColor: AppTheme.primary
+      textColor: AppTheme.white
   );
   Navigator.of(context).pushNamed(HomePage.routeName);
     }).catchError((e){

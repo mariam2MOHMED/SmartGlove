@@ -26,20 +26,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     SettingProvider settingProvider=Provider.of<SettingProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+
 appBar: AppBar(
   title:Text(widget.titles[currindex]) ,
-  actions: [
-   IconButton(onPressed: (){
-     bool isDark=true;
-     isDark=!isDark;
-     settingProvider.ChangeTheme(isDark?ThemeMode.dark:ThemeMode.light);
 
-   },
-       icon: Icon(Icons.dark_mode,
-   color: Colors.white,
-   ))
-  ],
+
 ),
       drawer: HomeDrawer(),
       body: widget.screens[currindex],

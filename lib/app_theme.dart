@@ -19,6 +19,11 @@ class AppTheme{
   static ThemeData lightTheme=ThemeData(
     scaffoldBackgroundColor: white,
     textTheme: TextTheme(
+        bodyLarge: GoogleFonts.roboto(
+            fontWeight: FontWeight.bold,
+            color: white,
+            fontSize: 18.0
+        ) ,
       headlineLarge: GoogleFonts.roboto(
           fontWeight: FontWeight.bold,
           color: AppTheme.white,
@@ -50,11 +55,11 @@ color: txt_black,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
-      backgroundColor: primary,
+      backgroundColor: white,
       showSelectedLabels: true,
       showUnselectedLabels: false,
-      selectedItemColor: AppTheme.grey,
-      unselectedItemColor: white,
+      selectedItemColor: AppTheme.primary,
+      unselectedItemColor: grey,
       selectedIconTheme: IconThemeData(
         size: 30.0,
 
@@ -82,6 +87,11 @@ color: txt_black,
   static ThemeData darkTheme=ThemeData(
     scaffoldBackgroundColor: black,
       textTheme: TextTheme(
+   bodyLarge: GoogleFonts.roboto(
+       fontWeight: FontWeight.bold,
+       color: white,
+       fontSize: 18.0
+   ) ,
           headlineSmall:GoogleFonts.roboto(
               fontWeight: FontWeight.w600,
               color: dark_txt_login,
@@ -108,11 +118,11 @@ color: txt_black,
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           type: BottomNavigationBarType.fixed,
-          backgroundColor: primary,
+          backgroundColor: black,
           showSelectedLabels: true,
           showUnselectedLabels: false,
-          selectedItemColor: AppTheme.grey,
-          unselectedItemColor: white,
+          selectedItemColor:white,
+          unselectedItemColor:  AppTheme.grey,
           selectedIconTheme: IconThemeData(
             size: 30.0,
 
@@ -132,7 +142,7 @@ color: txt_black,
               fontSize: 22.0,
               color: white
           ),
-          backgroundColor: primary,
+          backgroundColor: darksecondary,
           foregroundColor: white,
           centerTitle: true
       )
