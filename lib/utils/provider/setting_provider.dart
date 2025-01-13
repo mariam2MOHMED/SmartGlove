@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class SettingProvider with ChangeNotifier{
-   ThemeMode themeMode=ThemeMode.dark;
+   ThemeMode themeMode=ThemeMode.light;
    Future<void> ChangeTheme(ThemeMode selectTheme)async{
     themeMode=selectTheme;
     final SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
